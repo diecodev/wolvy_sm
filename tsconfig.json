@@ -26,7 +26,7 @@
     "baseUrl": "./",
     "paths": {
       "@styles/*": [
-        "styles/*"
+        "/app/styles/*"
       ],
       "@components/*": [
         "app/components/*"

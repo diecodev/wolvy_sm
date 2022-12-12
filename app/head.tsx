@@ -5,7 +5,7 @@ const Head: FC = () => {
     <>
       <title>Wolvy - Amor por las papas</title>
       <meta content='width=device-width, initial-scale=1' name='viewport' />
-      <link rel='icon' href='/favicon.ico' />
+      <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
     </>
   )
 }

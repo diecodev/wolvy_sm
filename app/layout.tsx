@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Inter } from '@next/font/google'
 import '@styles/globals.css'
-import { Logo } from '@components/icons'
+import { Logo } from 'app/components/icons'
 
 const inter = Inter({
   display: 'swap',

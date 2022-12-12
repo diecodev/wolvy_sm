@@ -1,4 +1,4 @@
-import { Location } from '@components/icons'
+import { Location } from 'app/components/icons'
 import styles from '@styles/home.module.css'
 import Link from 'next/link'
 

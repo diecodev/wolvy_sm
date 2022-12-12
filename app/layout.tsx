@@ -20,12 +20,10 @@ const RootLayout: FC<IRootLayout> = ({ children }) => {
     <html lang='es' className={inter.className} style={inter.style}>
       <head />
       <body>
-        <main>
-          <Logo className='bg_logo' />
-          <div className='bg_rounded bg_rounded--grey200' />
-          <div className='bg_rounded bg_rounded--red150' />
-          {children}
-        </main>
+        <Logo className='bg_logo' />
+        <div className='bg_rounded bg_rounded--grey200' />
+        <div className='bg_rounded bg_rounded--red150' />
+        {children}
       </body>
     </html>
   )

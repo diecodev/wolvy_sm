@@ -4,6 +4,8 @@
   --white: rgb(255, 255, 255);
   --black400: rgb(56, 56, 56);
   --yellow: rgb(249, 177, 52);
+  --grey: rgb(117, 145, 160);
+  --grey200: rgb(168, 185, 194);
 
   --radial-one: radial-gradient(50% 50% at 50% 50%, rgb(15, 31, 40) 0%, var(--black) 100%);
   --radial-two: radial-gradient(50% 50% at 50% 50%, rgb(38 20 21) 0%, var(--black) 100%);
@@ -119,6 +121,7 @@ body {
   font-smooth: always;
 
   background-color: var(--black);
+  overflow-x: hidden;
 }
 
 /* background */
@@ -140,7 +143,7 @@ body {
   height: clamp(50rem, 75vw, 75rem);
   position: fixed;
   top: -5rem;
-  z-index: -1;
+  z-index: -2;
 }
 
 .bg_rounded--grey200 {
@@ -153,11 +156,15 @@ body {
   left: -50%;
 }
 
+.main_container {
+  padding: 0 1rem;
+}
+
 @keyframes bg_breathe_animation {
 
   from,
   to {
-    opacity: .5;
+    opacity: .2;
   }
 
   50% {

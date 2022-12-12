@@ -111,6 +111,8 @@ body {
   line-height: 1.4rem;
   min-height: 100vh;
   min-width: 100vw;
+  position: relative;
+  overflow-x: hidden;
 
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
@@ -121,44 +123,35 @@ body {
   font-smooth: always;
 
   background-color: var(--black);
-  overflow-x: hidden;
+}
+
+.home_container {
+  background-image: url('/logo_outline.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: min(90%, 35rem);
 }
 
 /* background */
-.bg_logo {
-  padding: 1rem;
-  width: min(35rem, 100%);
+.radial_gradient {
+  content: '';
+  border-radius: 50%;
+  width: max(70vw, 70vh);
+  height: max(70vw, 70vh);
   position: fixed;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  animation: bg_breathe_animation 8s infinite ease;
-  color: var(--black400);
+  top: 25%;
   z-index: -1;
 }
 
-.bg_logo>svg {
-  width: auto;
-  height: auto;
-}
-
-.bg_rounded {
-  border-radius: 50%;
-  width: clamp(50rem, 75vw, 75rem);
-  height: clamp(50rem, 75vw, 75rem);
-  position: fixed;
-  top: -5rem;
-  z-index: -2;
-}
-
-.bg_rounded--grey200 {
+.radial_gradient--one {
   background: var(--radial-one);
-  right: -50%;
+  right: max(-35vw, -35vh);
 }
 
-.bg_rounded--red150 {
+.radial_gradient--two {
   background: var(--radial-two);
-  left: -50%;
+  left: max(-35vw, -35vh);
 }
 
 .main_container {

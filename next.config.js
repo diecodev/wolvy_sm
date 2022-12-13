@@ -14,7 +14,8 @@ const nextConfig = {
       },
       {
         source: '/whatsapp',
-        destination: 'https://api.whatsapp.com/send/?phone=573102629919&text&type=phone_number&app_absent=0'
+        destination: 'https://api.whatsapp.com/send/?phone=573102629919&text&type=phone_number&app_absent=0',
+        permanent: true
       }
     ]
   }

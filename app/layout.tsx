@@ -21,9 +21,7 @@ const RootLayout: FC<IRootLayout> = ({ children }) => {
       <body>
         <div className='radial_gradient radial_gradient--one' />
         <div className='radial_gradient radial_gradient--two' />
-        <div className='home_container'>
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   )

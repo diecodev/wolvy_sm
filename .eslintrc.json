@@ -4,5 +4,15 @@
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksSpreads": false,
+        "checksVoidReturn": false,
+        "checksConditionals": false
+      }
+    ]
   }
 }

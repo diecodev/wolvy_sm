@@ -7,6 +7,8 @@
   --grey: rgb(117, 145, 160);
   --grey200: rgb(168, 185, 194);
 
+  --red: rgb(229, 55, 69);
+
   --radial-one: radial-gradient(50% 50% at 50% 50%, rgb(15, 31, 40) 0%, var(--black) 100%);
   --radial-two: radial-gradient(50% 50% at 50% 50%, rgb(38 20 21) 0%, var(--black) 100%);
 

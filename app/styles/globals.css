@@ -3,6 +3,7 @@
   --black-15: rgba(29, 29, 29, 0.1);
   --white: rgb(255, 255, 255);
   --black400: rgb(56, 56, 56);
+  --black400-40: rgba(56 56 56 / .3);
   --yellow: rgb(249, 177, 52);
   --grey: rgb(117, 145, 160);
   --grey200: rgb(168, 185, 194);
@@ -112,7 +113,7 @@ body {
   color: var(--white);
   line-height: 1.4rem;
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   position: relative;
   overflow-x: hidden;
 

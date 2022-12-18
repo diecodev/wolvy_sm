@@ -104,14 +104,12 @@
   line-height: 1;
   letter-spacing: .1rem;
   font-size: clamp(2.5rem, 12vw, 5rem);
-  ;
   font-weight: 800;
   background: var(--grey-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-
   padding: var(--pading);
   margin: 0 calc(var(--padding) * 1.5);
 }

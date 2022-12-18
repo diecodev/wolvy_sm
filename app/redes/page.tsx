@@ -29,8 +29,11 @@ const SocialMediaPage: React.FC = () => {
   return (
     <main className={styles.container}>
       <div className={styles.logo_links_container}>
-        <div className={styles.image_container}>
-          <Image src={wolvy_smoke} alt='wolvy logo' priority />
+        <div className={styles.image_title}>
+          <div className={styles.image_container}>
+            <Image src={wolvy_smoke} alt='wolvy logo' priority />
+          </div>
+          <h1>WOLVY</h1>
         </div>
         <div className={styles.socials_container}>
           {

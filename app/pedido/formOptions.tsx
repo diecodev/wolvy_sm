@@ -49,6 +49,7 @@ export const FormCategory = async (): Promise<React.ReactElement> => {
       {data.map((category) => (
         <div key={category.id} className={styles.category_wrapper}>
           <h2 className={styles.category}>{category.name}</h2>
+          {/* @ts-expect-error Server Component */}
           <FormOptions index={category.id} categoryName={category.name} />
         </div>
       ))}

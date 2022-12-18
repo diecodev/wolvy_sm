@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
 model Admin {
   id       String @id @unique @default(uuid())
   name     String
@@ -25,7 +31,7 @@ model Category {
 
 model Ingredient {
   id                String              @id @unique @default(uuid())
-  name              String              @unique
+  name              String
   pricing           Int
   stock             Int
   usageByProduct    Int
@@ -50,12 +56,14 @@ model Product {
 }
 
 model Invoice {
-  id                     String    @id @unique @default(uuid())
+  id                     String      @id @unique @default(uuid())
   customerName           String
   customerAddress        String?
   customerAddressDetails String?
   deliveryPricing        Int?
-  date                   DateTime  @default(now())
+  date                   DateTime    @default(now())
+  status                 OrderStatus @default(PENDING)
   whatsappNumber         String
+  total                  Int
   Product                Product[]
 }

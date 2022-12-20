@@ -1,13 +1,11 @@
-export interface IFormData {
-  principal: number
-  salsas: number[]
-  toppins: number[]
-  extras: number[]
-}
+import { IFormData, TOptions } from 'index'
 
 export const createFormData = (formElement: HTMLFormElement): IFormData => {
   const data: IFormData = {
-    principal: 0,
+    principal: {
+      name: '',
+      id: 0
+    },
     salsas: [],
     toppins: [],
     extras: []
@@ -16,20 +14,21 @@ export const createFormData = (formElement: HTMLFormElement): IFormData => {
   const options = Object.fromEntries(form.entries())
 
   for (const [key] of Object.entries(options)) {
-    const keySplit = Number(key.split('_')[1])
+    const id = Number(key.split('-')[2])
+    const name = key.split('-')[1].replaceAll('_', ' ')
+    const keyindex = key.split('-')[0].toLocaleLowerCase()
 
-    if (key.startsWith('Principal')) {
-      data.principal = keySplit
+    console.log({ keyindex, name, id })
+
+    if (keyindex === 'principal') {
+      data[keyindex] = {
+        name,
+        id
+      }
+      continue
     }
-    if (key.startsWith('Salsas')) {
-      data.salsas = [...data.salsas, keySplit]
-    }
-    if (key.startsWith('Toppins')) {
-      data.toppins = [...data.toppins, keySplit]
-    }
-    if (key.startsWith('Extras')) {
-      data.extras = [...data.extras, keySplit]
-    }
+
+    data[keyindex] = [...data[keyindex] as TOptions[], { name, id }]
   }
 
   return data

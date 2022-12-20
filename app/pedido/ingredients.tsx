@@ -12,7 +12,7 @@ export const FormOptions = ({ ingredients, categoryName }: FormOptionsProps): Re
   return (
     <>
       {ingredients.map((ingredient) => {
-        const id = `${categoryName}_${ingredient.publicId.toString()}`
+        const id = `${categoryName}-${ingredient.name.replaceAll(' ', '_')}-${ingredient.publicId.toString()}`
 
         return (
           <label className={styles.ingredients_wrapper} key={ingredient.id} htmlFor={categoryName}>

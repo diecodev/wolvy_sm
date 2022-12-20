@@ -2,7 +2,9 @@
 
 import styles from './styles.module.css'
 import { useRef, useState } from 'react'
-import { createFormData, createOrder, IFormData } from 'utils/client.libs'
+import { createFormData } from 'utils/client.libs'
+import { useRouter } from 'next/navigation'
+import { IFormData } from 'index'
 interface ICustomFrom {
   children: React.ReactElement
 }
@@ -11,19 +13,27 @@ export const CustomForm = ({ children }: ICustomFrom): React.ReactElement => {
   const [quantity, setQuantity] = useState(1)
   const [data, setData] = useState<IFormData[]>([])
   const [count, setCount] = useState(1)
+  const [delivery, setDelivery] = useState(false)
   const ref = useRef<HTMLFormElement>(null)
+
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
+    const { current } = ref
+    if (current === null) return
+
     if (count < quantity) {
-      setData((prev) => [...prev, createFormData(ref.current as HTMLFormElement)])
+      setData((prev) => [...prev, createFormData(current)])
       setCount((prev) => prev + 1)
-      ref.current?.reset()
+      e.currentTarget.reset()
       return
     }
 
     if (count === quantity) {
-      await createOrder([...data, createFormData(ref.current as HTMLFormElement)])
+      const missingData = createFormData(current)
+      const dataParam = Buffer.from(JSON.stringify([...data, missingData])).toString('base64')
+      router.push(`/pedido/facturacion?data=${dataParam}&delivery=${delivery ? 'true' : ''}`)
     }
   }
 
@@ -55,7 +65,7 @@ export const CustomForm = ({ children }: ICustomFrom): React.ReactElement => {
             id='delivery'
             value='domicilio'
           />
-          <label htmlFor='delivery' className={styles.delivery_label}>
+          <label htmlFor='delivery' className={styles.delivery_label} onClick={() => setDelivery(prev => !prev)}>
             <span className={styles.delivery}>Domicilio</span>
             <span className={styles.toggle_button} />
           </label>

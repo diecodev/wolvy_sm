@@ -32,6 +32,7 @@ model Category {
 model Ingredient {
   id                String              @id @unique @default(uuid())
   name              String
+  publicId          Int                 @unique @default(autoincrement())
   pricing           Int
   stock             Int
   usageByProduct    Int
@@ -42,8 +43,8 @@ model Ingredient {
 
 model IngredientProduct {
   id           Int        @id @default(autoincrement())
-  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
-  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [publicId])
+  ingredientId Int
   product      Product    @relation(fields: [productId], references: [id])
   productId    String
 }

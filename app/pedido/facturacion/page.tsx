@@ -2,6 +2,7 @@
 import { Header } from '@components/header'
 import { IData } from 'index'
 import { useSearchParams } from 'next/navigation'
+import { InvoiceForm } from './invoiceForm'
 import { ProductInfo } from './productInfo'
 import styles from './styles.module.css'
 
@@ -15,14 +16,11 @@ const DeliveryData = (): React.ReactElement => {
   return (
     <main className={styles.invoice_wrapper}>
       <Header />
+      <InvoiceForm delivery={delivery} data={decoded} />
       <article className={styles.order_details_wrapper}>
         <h3 className={styles.order_title}>Detalles de la orden</h3>
         <div className={styles.products_wrapper}>
-          {
-            decoded.map((item, index: number) => (
-              <ProductInfo data={item} key={index} />
-            ))
-          }
+          <ProductInfo data={decoded} />
         </div>
       </article>
     </main>

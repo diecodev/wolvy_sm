@@ -1,4 +1,4 @@
-import { IFormData, TOptions } from 'index'
+import { IFormData, TOptions, CreateOrderProps } from 'index'
 
 export const createFormData = (formElement: HTMLFormElement): IFormData => {
   const data: IFormData = {
@@ -8,17 +8,18 @@ export const createFormData = (formElement: HTMLFormElement): IFormData => {
     },
     salsas: [],
     toppins: [],
-    extras: []
+    extras: [],
+    price: 0
   }
   const form = new FormData(formElement)
   const options = Object.fromEntries(form.entries())
+  let total = 0
 
   for (const [key] of Object.entries(options)) {
-    const id = Number(key.split('-')[2])
-    const name = key.split('-')[1].replaceAll('_', ' ')
     const keyindex = key.split('-')[0].toLocaleLowerCase()
-
-    console.log({ keyindex, name, id })
+    const name = key.split('-')[1].replaceAll('_', ' ')
+    const id = Number(key.split('-')[2])
+    total += Number(key.split('-')[3])
 
     if (keyindex === 'principal') {
       data[keyindex] = {
@@ -31,10 +32,12 @@ export const createFormData = (formElement: HTMLFormElement): IFormData => {
     data[keyindex] = [...data[keyindex] as TOptions[], { name, id }]
   }
 
+  data.price = total
+
   return data
 }
 
-export const createOrder = async (data: IFormData[]): Promise<void> => {
+export const createOrder = async (data: CreateOrderProps): Promise<string | boolean> => {
   const res = await fetch('/api/order', {
     method: 'POST',
     headers: {
@@ -42,6 +45,6 @@ export const createOrder = async (data: IFormData[]): Promise<void> => {
     },
     body: JSON.stringify(data)
   })
-  const json = await res.json()
-  console.log(json)
+
+  return res.ok ? (await res.json()).id : false
 }

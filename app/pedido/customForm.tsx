@@ -24,7 +24,8 @@ export const CustomForm = ({ children }: ICustomFrom): React.ReactElement => {
     if (current === null) return
 
     if (count < quantity) {
-      setData((prev) => [...prev, createFormData(current)])
+      const missingData = createFormData(current)
+      setData((prev) => [...prev, missingData])
       setCount((prev) => prev + 1)
       e.currentTarget.reset()
       return

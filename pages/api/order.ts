@@ -1,24 +1,19 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { CreateOrderProps } from 'index'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from 'utils/prisma'
 
-interface IFormData {
-  principal: number
-  salsas: number[]
-  toppins: number[]
-  extras: number[]
-}
-
 const createOrder = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  const { principal, salsas, toppins, extras } = req.body as IFormData
+  const { customerName, products, whatsappNumber, customerAddress, total } = req.body as CreateOrderProps
 
   const order = await prisma.invoice.create({
     data: {
-      customerName: 'John Doe',
-      total: 0,
-      whatsappNumber: '1234567890',
+      customerName,
+      total,
+      whatsappNumber,
+      customerAddress,
       Product: {
-        create: {
+        create: products.map(({ principal, salsas, toppins, extras }) => ({
           IngredientProduct: {
             createMany: {
               data: [
@@ -37,28 +32,15 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse): Promise<v
               ]
             }
           }
-        }
+        }))
       }
     },
     select: {
-      Product: {
-        include: {
-          IngredientProduct: {
-            include: {
-              ingredient: {
-                select: {
-                  name: true,
-                  category: true
-                }
-              }
-            }
-          }
-        }
-      }
+      id: true
     }
   })
 
-  res.status(200).json({ order })
+  res.status(200).json(order)
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {

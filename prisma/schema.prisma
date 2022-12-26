@@ -57,14 +57,13 @@ model Product {
 }
 
 model Invoice {
-  id                     String      @id @unique @default(uuid())
-  customerName           String
-  customerAddress        String?
-  customerAddressDetails String?
-  deliveryPricing        Int?
-  date                   DateTime    @default(now())
-  status                 OrderStatus @default(PENDING)
-  whatsappNumber         String
-  total                  Int
-  Product                Product[]
+  id              String      @id @unique @default(uuid())
+  customerName    String
+  customerAddress String?
+  deliveryPricing Int?
+  date            DateTime    @default(now())
+  status          OrderStatus @default(PENDING)
+  whatsappNumber  String
+  total           Int
+  Product         Product[]
 }

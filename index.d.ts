@@ -10,7 +10,7 @@ interface TOptions {
   id: number
 }
 interface IFormData {
-  [key: string]: TOptions | TOptions[]
+  [key: string]: TOptions | TOptions[] | number
 }
 
 interface IData {
@@ -18,4 +18,20 @@ interface IData {
   salsas: TOptions[]
   toppins: TOptions[]
   extras: TOptions[]
+  price: number
+}
+
+interface ApiOrderProps {
+  principal: number
+  salsas: number[]
+  toppins: number[]
+  extras: number[]
+}
+
+interface CreateOrderProps {
+  customerName: string
+  customerAddress?: string
+  whatsappNumber: string
+  total: number
+  products: ApiOrderProps[]
 }
